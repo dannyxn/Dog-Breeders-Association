@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from . import auth
 from . import main
+from . import breeder
 
 
 def create_app(test_config=None):
@@ -24,5 +25,6 @@ def create_app(test_config=None):
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(main.bp)
+    app.register_blueprint(breeder.bp)
 
     return app

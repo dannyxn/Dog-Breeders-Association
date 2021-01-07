@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dostępne regiony{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="content-area">
+    <div class="search-area">
+      <h4>Szukaj według</h4>
+      <form method="post">
+        <label for="region_name">Nazwa regionu</label>
+        <input name="region_name" id="region_name">
+        <input type="submit" value="Wyszukaj">
+    </form>
+    </div>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+        <th>ID</th>
+        <th>Nazwa</th>
+      </tr>
+      {% for region in regions %}
+      <tr>
+        <td>{{ region[0] }}</td>
+        <td>{{ region[1] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    </div>
+  </div>
+
+{% endblock %}
