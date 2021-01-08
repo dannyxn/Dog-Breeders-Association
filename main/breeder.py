@@ -53,7 +53,3 @@ def litters():
 def exams():
     return render_template('breeder/exams.html')
 
-
-@bp.route('/employees')
-def employees():
-    return render_template('breeder/employees.html')
