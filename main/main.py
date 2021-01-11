@@ -8,7 +8,3 @@ bp = Blueprint('main', __name__, url_prefix='/')
 @bp.route('/')
 def index():
     return render_template('index.html')
-
-@bp.route('/employees')
-def employees():
-    return render_template('employees.html')

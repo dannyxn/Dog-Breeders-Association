@@ -4,7 +4,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 
-bp = Blueprint('breeder', __name__, url_prefix='/breeder')
+bp = Blueprint('browser', __name__, url_prefix='/browse')
 
 host = "127.0.0.1"
 port = "5432"
@@ -16,40 +16,43 @@ cursor = conn.cursor()
 cursor.execute("SET SEARCH_PATH TO zwiazek")
 
 
-@bp.route('/')
-def index():
-    return render_template('breeder/breeder.html')
+
+@bp.route('/breeders')
+def breeders():
+    return render_template('browser/breeders.html')
 
 
 @bp.route('/kennels')
 def kennels():
-    return render_template('breeder/kennels_list.html')
+    return render_template('browser/kennels_list.html')
 
 
 @bp.route('/dogs')
 def dogs():
-    return render_template('breeder/dogs.html')
-
+    return render_template('browser/dogs.html')
 
 @bp.route('/regions')
 def regions():
     cursor.execute("SELECT * FROM Region")
     regions = cursor.fetchall()
 
-    return render_template('breeder/regions.html', regions=regions)
+    return render_template('browser/regions.html', regions=regions)
 
 
 @bp.route('/breeds')
 def breeds():
-    return render_template('breeder/breeds.html')
+    return render_template('browser/breeds.html')
 
 
 @bp.route('/litters')
 def litters():
-    return render_template('breeder/litters.html')
+    return render_template('browser/litters.html')
 
 
 @bp.route('/exams')
 def exams():
-    return render_template('breeder/exams.html')
+    return render_template('browser/exams.html')
 
+@bp.route('/employees')
+def employees():
+    return render_template('employees.html')
