@@ -26,8 +26,14 @@
             <th>ID Matki</th>
             <th>Alias</th>
       </tr>
+      {% for litter in litters %}
       <tr>
+        <td>{{ litter[0] }}</td>
+        <td>{{ litter[1] }}</td>
+        <td>{{ litter[2] }}</td>
+        <td>{{ litter[3] }}</td>
       </tr>
+      {% endfor %}
     </table>
     </div>
   </div>

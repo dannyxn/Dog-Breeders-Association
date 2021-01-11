@@ -13,8 +13,6 @@
         <input name="employee_id" id="employee_id">
         <label for="employee_surname">Nazwisko</label>
         <input name="employee_surname" id="employee_surname">
-        <label for="position">Stanowisko</label>
-        <input name="position" id="position">
         <input type="submit" value="Wyszukaj">
     </form>
     </div>
@@ -24,12 +22,18 @@
             <th>ID</th>
             <th>Imię</th>
             <th>Nazwisko</th>
-            <th>Stanowisko</th>
             <th>Adres e-mail</th>
             <th>Numer telefonu</th>
-      </tr>
-      <tr>
-      </tr>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+            <td>{{ employee[0] }}</td>
+            <td>{{ employee[1] }}</td>
+            <td>{{ employee[2] }}</td>
+            <td>{{ employee[3] }}</td>
+            <td>{{ employee[5] }}</td>
+            </tr>
+        {% endfor %}
     </table>
     </div>
   </div>

@@ -26,12 +26,18 @@
         <th>Typ</th>
         <th>Próba pracy</th>
       </tr>
+      {% for breed in breeds %}
       <tr>
-        <td>1</td>
-        <td>Owczarek niemiecki</td>
-        <td>Owczarek</td>
+        <td>{{ breed[0] }}</td>
+        <td>{{ breed[1] }}</td>
+        <td>{{ breed[2] }}</td>
+        {% if breed[3] %}
         <td>TAK</td>
+        {% else %}
+        <td>NIE</td>
+        {% endif %}
       </tr>
+      {% endfor %}
     </table>
     </div>
   </div>

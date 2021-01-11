@@ -27,9 +27,15 @@
             <th>Nazwa egzaminu</th>
             <th>ID regionu</th>
             <th>ID egzaminatora</th>
-      </tr>
-      <tr>
-      </tr>
+        </tr>
+        {% for exam in exams %}
+            <tr>
+            <td>{{ exam[0] }}</td>
+            <td>{{ exam[1] }}</td>
+            <td>{{ exam[3] }}</td>
+            <td>{{ exam[4] }}</td>
+            </tr>
+        {% endfor %}
     </table>
     </div>
   </div>
