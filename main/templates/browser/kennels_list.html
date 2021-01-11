@@ -22,16 +22,18 @@
     <table class="w3-table-all w3-hoverable">
       <tr>
         <th>ID</th>
-        <th>Własciciel</th>
         <th>Nazwa</th>
-        <th>Region</th>
+        <th>ID Właściciela</th>
+        <th>ID Regionu</th>
       </tr>
+      {% for kennel in kennels %}
       <tr>
-        <td>1</td>
-        <td>Dawid Chara - #321332</td>
-        <td>Leśna sfora</td>
-        <td>Małopolskie</td>
+        <td>{{ kennel[0] }}</td>
+        <td>{{ kennel[3] }}</td>
+        <td>{{ kennel[1] }}</td>
+        <td>{{ kennel[2] }}</td>
       </tr>
+      {% endfor %}
     </table>
     </div>
   </div>

@@ -22,18 +22,24 @@
     <table class="w3-table-all w3-hoverable">
       <tr>
           <th>ID</th>
-          <th>Imie</th>
+          <th>Imię</th>
           <th>ID Właściciela</th>
           <th>ID Miotu</th>
-          <th>Nazwa rasy</th>
+          <th>ID Rasy</th>
       </tr>
+      {% for dog in dogs %}
       <tr>
-          <td>1</td>
-          <td>Aria</td>
-          <td>1</td>
-          <td>-</td>
-          <td>Owczarek niemiecki</td>
+        <td>{{ dog[0] }}</td>
+        <td>{{ dog[4] }}</td>
+        <td>{{ dog[1] }}</td>
+        {% if dog[2] %}
+        <td>dog[2]</td>
+        {% else %}
+        <td>Nie zarejestrowano</td>
+        {% endif %}
+        <td>{{ dog[3] }}</td>
       </tr>
+      {% endfor %}
 
     </table>
     </div>

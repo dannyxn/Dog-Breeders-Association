@@ -27,13 +27,15 @@
           <th>Adres e-mail</th>
           <th>Numer telefonu</th>
       </tr>
+      {% for breeder in breeders %}
       <tr>
-          <td>1</td>
-          <td>Dawid</td>
-          <td>Chara</td>
-          <td>8chara@pegaz.fis.agh.edu.pl</td>
-          <td>+48 664477248</td>
+          <td>{{ breeder[0] }}</td>
+          <td>{{ breeder[1] }}</td>
+          <td>{{ breeder[2] }}</td>
+          <td>{{ breeder[3] }}</td>
+          <td>{{ breeder[5] }}</td>
       </tr>
+      {% endfor %}
 
     </table>
     </div>
