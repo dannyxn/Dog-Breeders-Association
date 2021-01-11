@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Informacje o zarejestrowanych hodowcach{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="content-area">
+    <div class="search-area">
+      <h4>Szukaj według</h4>
+      <form method="post">
+        <label for="breeder_id">Numer identyfikacyjny hodowcy</label>
+        <input name="breeder_id" id="breeder_id">
+        <label for="breeder_name">Imię hodowcy</label>
+        <input name="breeder_name" id="breeder_name">
+        <label for="breeder_surname">Nazwisko hodowcy</label>
+        <input name="breeder_surname" id="breeder_surname">
+        <input type="submit" value="Wyszukaj">
+    </form>
+    </div>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+          <th>ID</th>
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>Adres e-mail</th>
+          <th>Numer telefonu</th>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Dawid</td>
+          <td>Chara</td>
+          <td>8chara@pegaz.fis.agh.edu.pl</td>
+          <td>+48 664477248</td>
+      </tr>
+
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

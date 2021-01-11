@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Zarejestrowane mioty psów{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="content-area">
+    <div class="search-area">
+      <h4>Szukaj według</h4>
+      <form method="post">
+        <label for="litter_id">ID Miotu</label>
+        <input name="litter_id" id="litter_id">
+        <label for="father_id">ID Ojca</label>
+        <input name="father_id" id="father_id">
+        <label for="mother_id">ID Matki</label>
+        <input name="mother_id" id="mother_id">
+        <input type="submit" value="Wyszukaj">
+    </form>
+    </div>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+        <tr>
+            <th>ID</th>
+            <th>ID Ojca</th>
+            <th>ID Matki</th>
+            <th>Alias</th>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

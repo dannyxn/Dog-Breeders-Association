@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Informacje o zarejestrowanych hodowlach{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="content-area">
+    <div class="search-area">
+      <h4>Szukaj według</h4>
+      <form method="post">
+        <label for="breeder_name">Imię i nazwisko hodowcy</label>
+        <input name="breeder_name" id="breeder_name">
+        <label for="kennel_name">Nazwa hodowli</label>
+        <input name="kennel_name" id="kennel_name">
+        <label for="region">Region</label>
+        <input name="region" id="region">
+        <input type="submit" value="Wyszukaj">
+    </form>
+    </div>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+        <th>ID</th>
+        <th>Własciciel</th>
+        <th>Nazwa</th>
+        <th>Region</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Dawid Chara - #321332</td>
+        <td>Leśna sfora</td>
+        <td>Małopolskie</td>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Egzaminy przeprowadzone przez związek{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="content-area">
+    <div class="search-area">
+      <h4>Szukaj według</h4>
+      <form method="post">
+        <label for="exam_id">ID Egzaminu</label>
+        <input name="exam_id" id="exam_id">
+        <label for="exam_name">Nazwa egzaminu</label>
+        <input name="exam_name" id="exam_name">
+        <label for="region_id">ID regionu</label>
+        <input name="region_id" id="region_id">
+        <label for="region_id">ID egzaminatora</label>
+        <input name="examiner_id" id="examiner_id">
+        <input type="submit" value="Wyszukaj">
+    </form>
+    </div>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+        <tr>
+            <th>ID egzaminu</th>
+            <th>Nazwa egzaminu</th>
+            <th>ID regionu</th>
+            <th>ID egzaminatora</th>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

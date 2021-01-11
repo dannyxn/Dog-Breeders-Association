@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Informacje o psach dopuszczonych do reprodukcji{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="content-area">
+    <div class="search-area">
+      <h4>Szukaj według</h4>
+      <form method="post">
+        <label for="breeder_id">Numer identyfikacyjny hodowcy</label>
+        <input name="breeder_id" id="breeder_id">
+        <label for="litter_id">Numer identyfikacyjny miotu</label>
+        <input name="litter_id" id="litter_id">
+        <label for="breed_id">Numer identyfikacyjny rasy</label>
+        <input name="breed_id" id="breed_id">
+        <input type="submit" value="Wyszukaj">
+    </form>
+    </div>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+          <th>ID</th>
+          <th>Imie</th>
+          <th>ID Właściciela</th>
+          <th>ID Miotu</th>
+          <th>Nazwa rasy</th>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Aria</td>
+          <td>1</td>
+          <td>-</td>
+          <td>Owczarek niemiecki</td>
+      </tr>
+
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

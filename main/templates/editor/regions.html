@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h3>Dodaj region</h3>
+<form method="post">
+    <label for="region_name">Nazwa regionu</label>
+    <input name="region_name" id="region_name" required>
+    <input type="submit" value="Dodaj">
+</form>
+
+<h3>Usuń region</h3>
+<form method="post">
+    <label for="region_id">ID regionu</label>
+    <input name="region_id" id="region_id" required>
+    <input type="submit" value="Usuń">
+</form>
+
+<h3>Edytuj region</h3>
+<form method="post">
+    <label for="region_id">ID regionu</label>
+    <input name="region_id" id="region_id" required>
+    <label for="region_name">Nazwa regionu</label>
+    <input name="region_name" id="region_name" required>
+    <input type="submit" value="Aktualizuj">
+</form>
+{% endblock %}

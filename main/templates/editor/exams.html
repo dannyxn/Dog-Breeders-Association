@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h3>Dodaj egzamin</h3>
+<form method="post">
+    <label for="exam_name">Nazwa egzaminu</label>
+    <input name="exam_name" id="exam_name" required>
+    <label for="description">Opis</label>
+    <textarea name="description" id="description" required></textarea>
+    <label for="region_id">ID regionu</label>
+    <input name="region_id" id="region_id" required>
+    <label for="examiner_id">ID egzaminatora</label>
+    <input name="examiner_id" id="examiner_id" required>
+    <input type="submit" value="Dodaj">
+</form>
+
+<h3>Usuń egzamin</h3>
+<form method="post">
+    <label for="exam_id">ID egzaminu</label>
+    <input name="exam_id" id="exam_id" required>
+    <input type="submit" value="Usuń">
+</form>
+
+<h3>Edytuj egzamin</h3>
+<form method="post">
+    <label for="exam_id">ID egzaminu</label>
+    <input name="exam_id" id="exam_id" required>
+    <label for="exam_name">Nazwa egzaminu</label>
+    <input name="exam_name" id="exam_name" required>
+    <label for="description">Opis</label>
+    <textarea name="description" id="description" required></textarea>
+    <label for="region_id">ID regionu</label>
+    <input name="region_id" id="region_id" required>
+    <label for="examiner_id">ID egzaminatora</label>
+    <input name="examiner_id" id="examiner_id" required>
+    <input type="submit" value="Aktualizuj">
+</form>
+{% endblock %}
