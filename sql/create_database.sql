@@ -7,7 +7,8 @@ id int NOT NULL,
 imie varchar(64) NOT NULL,
 nazwisko varchar(64) NOT NULL,
 email varchar(64) NOT NULL,
-haslo varchar(64) NOT NULL
+haslo varchar(64) NOT NULL,
+numer_telefonu varchar(64)
 );
 
 CREATE TABLE Hodowla
@@ -54,7 +55,7 @@ CREATE TABLE Rasa
 id int NOT NULL,
 nazwa varchar(64) NOT NULL,
 typ varchar(64) NOT NULL,
-proba_pracy bit NOT NULL
+proba_pracy boolean NOT NULL
 );
 
 CREATE TABLE Miot
@@ -70,7 +71,9 @@ CREATE TABLE Pracownik
 id int NOT NULL,
 imie varchar(64) NOT NULL,
 nazwisko varchar(64) NOT NULL,
-haslo varchar(64) NOT NULL
+email varchar(64) NOT NULL,
+haslo varchar(64) NOT NULL,
+numer_telefonu varchar(64)
 );
 
 ALTER TABLE Hodowca ADD PRIMARY KEY (id);
@@ -93,3 +96,6 @@ ALTER TABLE Pies_egzamin ADD FOREIGN KEY (id_pies) REFERENCES Pies (id);
 ALTER TABLE Pies_egzamin ADD FOREIGN KEY (id_egzamin) REFERENCES Egzamin (id);
 ALTER TABLE Miot ADD FOREIGN KEY (id_ojciec) REFERENCES Pies (id);
 ALTER TABLE Miot ADD FOREIGN KEY (id_matka) REFERENCES Pies (id);
+
+
+
