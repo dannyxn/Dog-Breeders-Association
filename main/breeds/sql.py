@@ -6,3 +6,5 @@ DELETE_BREED = "DELETE FROM Rasa WHERE id = {0}"
 UPDATE_BREED = "UPDATE Rasa SET nazwa = '{1}', typ = '{2}', proba_pracy = {3}  WHERE id = {0}"
 
 GET_LATEST_ID = "SELECT * FROM Rasa_ostatni_indeks"
+
+SEARCH_BREED  = "SELECT * FROM Rasa WHERE"

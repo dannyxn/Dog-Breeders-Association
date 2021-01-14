@@ -6,3 +6,5 @@ UPDATE_DOG = "UPDATE Rasa SET id_wlasciciel = {1}, id_miot = {2}, id_rasa = {3} 
              "WHERE id = {0}"
 
 GET_LATEST_ID = "SELECT * FROM Pies_ostatni_indeks"
+
+SEARCH_DOGS = "SELECT * FROM Pies WHERE"

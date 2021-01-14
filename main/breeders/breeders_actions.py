@@ -32,3 +32,32 @@ def handle_edit(request, cursor, conn):
                                             breeder_email_to_edit, breeder_phone_number_to_edit))
         conn.commit()
         return redirect(url_for('browser.breeders'))
+
+def handle_search(request, cursor):
+    if request.method == 'GET':
+        breeder_id = request.args.get('breeder_id')
+        breeder_name = request.args.get('breeder_name')
+        breeder_surname = request.args.get('breeder_surname')
+        query = SEARCH_BREEDER
+        any_condition_present = False
+        built_query = ""
+        if breeder_id:
+            built_query += " id = "  + breeder_id
+            any_condition_present = True
+        if breeder_name:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " imie = '{}' ".format(breeder_name)
+            any_condition_present = True
+        if breeder_surname:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " nazwisko = '{}' ".format(breeder_surname)
+
+        if built_query == "":
+            cursor.execute(ALL_BREEDERS)
+        else:
+            cursor.execute(query + built_query)
+
+        results = cursor.fetchall()
+        return render_template('browser/breeders.html', breeders=results)

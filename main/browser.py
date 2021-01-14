@@ -1,11 +1,14 @@
 import psycopg2
-from .breeders.sql import *
-from .breeds.sql import *
-from .dogs.sql import *
-from .exams.sql import *
-from .kennels.sql import *
-from .litters.sql import *
-from .regions.sql import *
+from .breeders.sql import ALL_BREEDERS
+from .breeds.sql import ALL_BREEDS
+from .dogs.sql import ALL_DOGS
+from .exams.sql import ALL_EXAMS
+from .kennels.sql import ALL_KENNELS
+from .litters.sql import ALL_LITTERS
+from .regions.sql import ALL_REGIONS
+from .breeders import breeders_actions
+from .breeds import breeds_actions
+from .dogs import dogs_actions
 
 from flask import (
     Blueprint, render_template, request
@@ -32,6 +35,10 @@ def breeders():
 
     return render_template('browser/breeders.html', breeders=breeders)
 
+@bp.route('/breeders/search')
+def breeders_search():
+    return breeders_actions.handle_search(request, cursor)
+
 
 @bp.route('/kennels')
 def kennels():
@@ -45,6 +52,11 @@ def dogs():
     cursor.execute(ALL_DOGS)
     dogs = cursor.fetchall()
     return render_template('browser/dogs.html', dogs=dogs)
+
+
+@bp.route('/dogs/search')
+def dogs_search():
+    return dogs_actions.handle_search(request, cursor)
 
 @bp.route('/regions')
 def regions():
@@ -60,6 +72,10 @@ def breeds():
     breeds = cursor.fetchall()
 
     return render_template('browser/breeds.html', breeds=breeds)
+
+@bp.route('/breeds/search')
+def breeds_search():
+    return breeds_actions.handle_search(request, cursor)
 
 @bp.route('/litters')
 def litters():

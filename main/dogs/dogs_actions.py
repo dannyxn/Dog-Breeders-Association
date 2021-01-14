@@ -35,3 +35,42 @@ def handle_edit(request, cursor, conn):
                                          litter_id_to_edit, breed_id_to_edit))
         conn.commit()
         return redirect(url_for('browser.dogs'))
+
+def handle_search(request, cursor):
+    if request.method == 'GET':
+        dog_name = request.args.get('dog_name')
+        breeder_id = request.args.get('breeder_id')
+        litter_id = request.args.get('litter_id')
+        breed_id = request.args.get('breed_id')
+        query = SEARCH_DOGS
+        any_condition_present = False
+        built_query = ""
+        if dog_name:
+            built_query += " imie = '{}'".format(dog_name)
+            any_condition_present = True
+
+        if breeder_id:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " id_wlasciciel = {} ".format(breeder_id)
+            any_condition_present = True
+
+        if breed_id:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " id_rasa = {} ".format(breed_id)
+            any_condition_present = True
+
+        if litter_id:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " id_miot = {} ".format(litter_id)
+            any_condition_present = True
+
+        if built_query == "":
+            cursor.execute(ALL_DOGS)
+        else:
+            cursor.execute(query + built_query)
+
+        results = cursor.fetchall()
+        return render_template('browser/dogs.html', dogs=results)

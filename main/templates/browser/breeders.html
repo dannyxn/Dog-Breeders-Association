@@ -9,7 +9,7 @@
   <div class="content-area">
     <div class="search-area">
       <h4>Szukaj według</h4>
-      <form method="post">
+      <form method="get" action="{{ url_for('browser.breeders_search') }}" id="search_form">
         <label for="breeder_id">Numer identyfikacyjny hodowcy</label>
         <input name="breeder_id" id="breeder_id">
         <label for="breeder_name">Imię hodowcy</label>
