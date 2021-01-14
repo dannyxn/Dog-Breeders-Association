@@ -1,13 +1,21 @@
 import psycopg2
-from .sql_mapping.listing import *
-from .regions.sql import *
-from .breeds.sql import *
-from .kennels.sql import *
-from .exams.sql import *
-from .litters.sql import *
+from .breeders.sql import ALL_BREEDERS
+from .breeds.sql import ALL_BREEDS
+from .dogs.sql import ALL_DOGS
+from .exams.sql import ALL_EXAMS
+from .kennels.sql import ALL_KENNELS
+from .litters.sql import ALL_LITTERS
+from .regions.sql import ALL_REGIONS
+from .breeders import breeders_actions
+from .breeds import breeds_actions
+from .dogs import dogs_actions
+
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, render_template, request
 )
+
+ALL_EMPLOYEES = "SELECT * FROM Pracownik ORDER BY id"
+
 
 bp = Blueprint('browser', __name__, url_prefix='/browse')
 
@@ -20,14 +28,16 @@ conn = psycopg2.connect(host=host, port=port, dbname=dbname, user=user, password
 cursor = conn.cursor()
 cursor.execute("SET SEARCH_PATH TO zwiazek")
 
-
-
 @bp.route('/breeders')
 def breeders():
     cursor.execute(ALL_BREEDERS)
     breeders = cursor.fetchall()
 
     return render_template('browser/breeders.html', breeders=breeders)
+
+@bp.route('/breeders/search')
+def breeders_search():
+    return breeders_actions.handle_search(request, cursor)
 
 
 @bp.route('/kennels')
@@ -43,6 +53,11 @@ def dogs():
     dogs = cursor.fetchall()
     return render_template('browser/dogs.html', dogs=dogs)
 
+
+@bp.route('/dogs/search')
+def dogs_search():
+    return dogs_actions.handle_search(request, cursor)
+
 @bp.route('/regions')
 def regions():
     cursor.execute(ALL_REGIONS)
@@ -57,6 +72,10 @@ def breeds():
     breeds = cursor.fetchall()
 
     return render_template('browser/breeds.html', breeds=breeds)
+
+@bp.route('/breeds/search')
+def breeds_search():
+    return breeds_actions.handle_search(request, cursor)
 
 @bp.route('/litters')
 def litters():

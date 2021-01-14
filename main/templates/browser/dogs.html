@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Informacje o psach dopuszczonych do reprodukcji{% endblock %}</h1>
+<h1>{% block title %}Informacje o psach dopuszczonych do reprodukcji{% endblock %}</h1>
+<h3><a href="{{ url_for('editor.dogs') }}">Edycja listy psów</a></h3>
+
 {% endblock %}
 
 {% block content %}
   <div class="content-area">
     <div class="search-area">
       <h4>Szukaj według</h4>
-      <form method="post">
+      <form method="get"  action="{{ url_for('browser.dogs_search') }}" id="search_form">
+        <label for="dog_name">Imię psa</label>
+        <input name="dog_name" id="dog_name">
         <label for="breeder_id">Numer identyfikacyjny hodowcy</label>
         <input name="breeder_id" id="breeder_id">
         <label for="litter_id">Numer identyfikacyjny miotu</label>
