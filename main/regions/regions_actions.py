@@ -4,7 +4,9 @@ from .sql import *
 def handle_add(request, cursor, conn):
     if request.method == 'POST':
         region_name_to_add = request.form.get('region_name_to_add')
-        cursor.execute(ADD_REGION.format(100, region_name_to_add))
+        cursor.execute(GET_LATEST_ID)
+        new_id = cursor.fetchall()[0][0] + 1
+        cursor.execute(ADD_REGION.format(new_id, region_name_to_add))
         conn.commit()
         return redirect(url_for('browser.regions'))
 

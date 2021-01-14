@@ -1,13 +1,18 @@
 import psycopg2
-from .sql_mapping.listing import *
-from .regions.sql import *
+from .breeders.sql import *
 from .breeds.sql import *
-from .kennels.sql import *
+from .dogs.sql import *
 from .exams.sql import *
+from .kennels.sql import *
 from .litters.sql import *
+from .regions.sql import *
+
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, render_template, request
 )
+
+ALL_EMPLOYEES = "SELECT * FROM Pracownik ORDER BY id"
+
 
 bp = Blueprint('browser', __name__, url_prefix='/browse')
 
@@ -19,8 +24,6 @@ pw = "postgres"
 conn = psycopg2.connect(host=host, port=port, dbname=dbname, user=user, password=pw)
 cursor = conn.cursor()
 cursor.execute("SET SEARCH_PATH TO zwiazek")
-
-
 
 @bp.route('/breeders')
 def breeders():

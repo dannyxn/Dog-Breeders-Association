@@ -4,10 +4,12 @@ from .sql import *
 
 def handle_add(request, cursor, conn):
     if request.method == 'POST':
+        cursor.execute(GET_LATEST_ID)
+        new_id = cursor.fetchall()[0][0] + 1
         kennel_name_to_add = request.form.get('kennel_name_to_add')
         breeder_id_to_add = request.form.get('breeder_id_to_add')
         region_id_to_add = request.form.get('region_id_to_add')
-        cursor.execute(ADD_KENNEL.format(100, breeder_id_to_add, region_id_to_add, kennel_name_to_add))
+        cursor.execute(ADD_KENNEL.format(new_id, breeder_id_to_add, region_id_to_add, kennel_name_to_add))
         conn.commit()
         return redirect(url_for('browser.kennels'))
 

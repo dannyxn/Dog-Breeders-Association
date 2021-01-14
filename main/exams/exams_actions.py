@@ -3,12 +3,14 @@ from .sql import *
 
 def handle_add(request, cursor, conn):
     if request.method == 'POST':
+        cursor.execute(GET_LATEST_ID)
+        new_id = cursor.fetchall()[0][0] + 1
         exam_name_to_add = request.form.get('exam_name_to_add')
         description_to_add = request.form.get('description_to_add')
         region_id_to_add = request.form.get('region_id_to_add')
         examiner_id_to_add = request.form.get('examiner_id_to_add')
         exam_date_to_add = request.form.get('exam_date_to_add')
-        cursor.execute(ADD_EXAM.format(100, exam_name_to_add, description_to_add,
+        cursor.execute(ADD_EXAM.format(new_id, exam_name_to_add, description_to_add,
                                        region_id_to_add, examiner_id_to_add, exam_date_to_add))
         conn.commit()
         return redirect(url_for('browser.exams'))

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Informacje o zarejestrowanych hodowcach{% endblock %}</h1>
+<h1>{% block title %}Informacje o zarejestrowanych hodowcach{% endblock %}</h1>
+<h3><a href="{{ url_for('editor.breeders') }}">Edycja hodowców</a></h3>
 {% endblock %}
 
 {% block content %}

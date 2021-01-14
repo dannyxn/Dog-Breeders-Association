@@ -3,11 +3,13 @@ from .sql import *
 
 def handle_add(request, cursor, conn):
     if request.method == 'POST':
+        cursor.execute(GET_LATEST_ID)
+        new_id = cursor.fetchall()[0][0] + 1
         breeder_name_to_add = request.form.get('breeder_name_to_add')
         breeder_surname_to_add = request.form.get('breeder_surname_to_add')
         breeder_email_to_add = request.form.get('breeder_email_to_add')
         breeder_phone_number_to_add = request.form.get('breeder_phone_number_to_add')
-        cursor.execute(ADD_BREEDER.format(100, breeder_name_to_add, breeder_surname_to_add, breeder_email_to_add,
+        cursor.execute(ADD_BREEDER.format(new_id, breeder_name_to_add, breeder_surname_to_add, breeder_email_to_add,
                                          breeder_phone_number_to_add))
         conn.commit()
         return redirect(url_for('browser.breeders'))
