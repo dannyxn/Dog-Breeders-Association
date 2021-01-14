@@ -8,13 +8,13 @@
 {% block content %}
 
 <h3>Dodaj rasę</h3>
-<form method="post">
-    <label for="breed_name">Nazwa rasy</label>
-    <input name="breed_name" id="breed_name" required>
-    <label for="breed_type">Typ rasy</label>
-    <input type="breed_type" name="breed_type" id="breed_type" required>
+<form method="post" action="{{ url_for('editor.breeds_add') }}" id="add_breed_form" action="">
+    <label for="breed_name_to_add">Nazwa rasy</label>
+    <input name="breed_name_to_add" id="breed_name_to_add" required>
+    <label for="breed_type_to_add">Typ rasy</label>
+    <input name="breed_type_to_add" id="breed_type_to_add" required>
     <label>Czy podlega próbom pracy?</label>
-    <select class="w3-select" name="option">
+    <select class="w3-select" name="is_working_dog_to_add">
       <option value="1">TAK</option>
       <option value="0">NIE</option>
     </select>
@@ -23,22 +23,22 @@
 </form>
 
 <h3>Usuń rasę</h3>
-<form method="post">
-    <label for="breed_id">ID rasy</label>
-    <input name="breed_id" id="breed_id" required>
+<form method="post" action="{{ url_for('editor.breeds_delete') }}" id="delete_breed_form">
+    <label for="breed_id_to_delete">ID rasy</label>
+    <input name="breed_id_to_delete" id="breed_id_to_delete" required>
     <input type="submit" value="Usuń">
 </form>
 
 <h3>Edytuj rasę</h3>
-<form method="post">
-    <label for="breed_id">ID rasy</label>
-    <input name="breed_id" id="breed_id" required>
-    <label for="breed_name">Nazwa rasy</label>
-    <input name="breed_name" id="breed_name" required>
-    <label for="breed_type">Typ rasy</label>
-    <input type="breed_type" name="breed_type" id="breed_type" required>
+<form method="post" action="{{ url_for('editor.breeds_edit') }}" id="edit_breed_form">
+    <label for="breed_id_to_edit">ID rasy</label>
+    <input name="breed_id_to_edit" id="breed_id_to_edit" required>
+    <label for="breed_name_to_edit">Nazwa rasy</label>
+    <input name="breed_name_to_edit" id="breed_name_to_edit" required>
+    <label for="breed_type_to_edit">Typ rasy</label>
+    <input name="breed_type_to_edit" id="breed_type_to_edit" required>
     <label>Czy podlega próbom pracy?</label>
-    <select class="w3-select" name="option">
+    <select class="w3-select" name="is_working_dog_to_edit">
       <option value="1">TAK</option>
       <option value="0">NIE</option>
     </select>

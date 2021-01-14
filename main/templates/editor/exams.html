@@ -7,37 +7,45 @@
 
 {% block content %}
 <h3>Dodaj egzamin</h3>
-<form method="post">
-    <label for="exam_name">Nazwa egzaminu</label>
-    <input name="exam_name" id="exam_name" required>
-    <label for="description">Opis</label>
-    <textarea name="description" id="description" required></textarea>
-    <label for="region_id">ID regionu</label>
-    <input name="region_id" id="region_id" required>
-    <label for="examiner_id">ID egzaminatora</label>
-    <input name="examiner_id" id="examiner_id" required>
+<form method="post" action="{{ url_for('editor.exams_add') }}" name="form_to_add">
+    <label for="exam_name_to_add">Nazwa egzaminu</label>
+    <input name="exam_name_to_add" id="exam_name_to_add" required>
+    <label for="description_to_add">Opis</label>
+    <textarea name="description_to_add" id="description_to_add" required></textarea>
+    <label for="region_id_to_add">ID regionu</label>
+    <input name="region_id_to_add" id="region_id_to_add" required>
+    <label for="examiner_id_to_add">ID egzaminatora</label>
+    <input name="examiner_id_to_add" id="examiner_id_to_add" required>
+    <label for="exam_date_to_add">Data zaliczenia</label>
+    <input type="date" id="exam_date_to_add" name="exam_date_to_add"
+       value="2021-01-01"
+       min="1950-01-01" max="2021-01-01">
     <input type="submit" value="Dodaj">
 </form>
 
 <h3>Usuń egzamin</h3>
-<form method="post">
-    <label for="exam_id">ID egzaminu</label>
-    <input name="exam_id" id="exam_id" required>
+<form method="post" action="{{ url_for('editor.exams_delete') }}" name="form_to_delete">
+    <label for="exam_id_to_delete">ID egzaminu</label>
+    <input name="exam_id_to_delete" id="exam_id_to_delete" required>
     <input type="submit" value="Usuń">
 </form>
 
 <h3>Edytuj egzamin</h3>
-<form method="post">
-    <label for="exam_id">ID egzaminu</label>
-    <input name="exam_id" id="exam_id" required>
-    <label for="exam_name">Nazwa egzaminu</label>
-    <input name="exam_name" id="exam_name" required>
-    <label for="description">Opis</label>
-    <textarea name="description" id="description" required></textarea>
-    <label for="region_id">ID regionu</label>
-    <input name="region_id" id="region_id" required>
-    <label for="examiner_id">ID egzaminatora</label>
-    <input name="examiner_id" id="examiner_id" required>
+<form method="post" action="{{ url_for('editor.exams_edit') }}" name="form_to_edit">
+    <label for="exam_id_to_edit">ID egzaminu</label>
+    <input name="exam_id_to_edit" id="exam_id_to_edit" required>
+    <label for="exam_name_to_edit">Nazwa egzaminu</label>
+    <input name="exam_name_to_edit" id="exam_name_to_edit" required>
+    <label for="description_to_edit">Opis</label>
+    <textarea name="description_to_edit" id="description_to_edit" required></textarea>
+    <label for="region_id_to_edit">ID regionu</label>
+    <input name="region_id_to_edit" id="region_id_to_edit" required>
+    <label for="examiner_id_to_edit">ID egzaminatora</label>
+    <input name="examiner_id_to_edit" id="examiner_id_to_edit" required>
+    <label for="exam_date_to_edit">Data zaliczenia</label>
+    <input type="date" id="exam_date_to_edit" name="exam_date_to_edit"
+       value="2021-01-01"
+       min="1950-01-01" max="2021-01-01">
     <input type="submit" value="Aktualizuj">
 </form>
 {% endblock %}

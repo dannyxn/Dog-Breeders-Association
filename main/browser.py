@@ -1,5 +1,10 @@
 import psycopg2
 from .sql_mapping.listing import *
+from .regions.sql import *
+from .breeds.sql import *
+from .kennels.sql import *
+from .exams.sql import *
+from .litters.sql import *
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )

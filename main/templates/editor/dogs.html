@@ -7,36 +7,38 @@
 
 {% block content %}
 <h3>Dodaj dane psa</h3>
-<form method="post">
-    <label for="dog_name">Imię psa</label>
-    <input name="dog_name" id="dog_name" required>
-    <label for="breeder_id">ID hodowcy</label>
-    <input name="breeder_id" id="breeder_id" required>
-    <label for="litter_id">ID miotu</label>
-    <input name="litter_id" id="litter_id" required>
-    <label for="breed_id">ID rasy</label>
-    <input name="breed_id" id="breed_id" required>
+<form method="post" action="{{ url_for('editor.dogs_add') }}" name="form_to_add">
+    <label for="dog_name_to_add">Imię psa</label>
+    <input name="dog_name_to_add" id="dog_name_to_add" required>
+    <label for="breeder_id_to_add">ID hodowcy</label>
+    <input name="breeder_id_to_add" id="breeder_id_to_add" required>
+    <label for="litter_id_to_add">ID miotu</label>
+    <input name="litter_id_to_add" id="litter_id_to_add">
+    <label for="breed_id_to_add">ID rasy</label>
+    <input name="breed_id_to_add" id="breed_id_to_add" required>
     </br>
     <input type="submit" value="Dodaj">
 </form>
 
 <h3>Usuń dane psa</h3>
-<form method="post">
-    <label for="dog_id">ID psa</label>
-    <input name="dog_id" id="dog_id" required>
+<form method="post" action="{{ url_for('editor.dogs_delete') }}" name="form_to_delete">
+    <label for="dog_id_to_delete">ID psa</label>
+    <input name="dog_id_to_delete" id="dog_id_to_delete" required>
     <input type="submit" value="Usuń">
 </form>
 
 <h3>Edytuj dane psa</h3>
-<form method="post">
-    <label for="dog_id">ID psa</label>
-    <input name="dog_id" id="dog_id" required>
-    <label for="breeder_id">ID hodowcy</label>
-    <input name="breeder_id" id="breeder_id" required>
-    <label for="litter_id">ID miotu</label>
-    <input name="litter_id" id="litter_id" required>
-    <label for="breed_id">ID rasy</label>
-    <input name="breed_id" id="breed_id" required>
+<form method="post" action="{{ url_for('editor.dogs_edit') }}" name="form_to_edit">
+    <label for="dog_id_to_edit">ID psa</label>
+    <input name="dog_id_to_edit" id="dog_id_to_edit" required>
+    <label for="dog_name_to_edit">ID hodowcy</label>
+    <input name="dog_name_to_edit" id="dog_name_to_edit" required>
+    <label for="breeder_id_to_edit">ID hodowcy</label>
+    <input name="breeder_id_to_edit" id="breeder_id_to_edit" required>
+    <label for="litter_id_to_edit">ID miotu</label>
+    <input name="litter_id_to_edit" id="litter_id_to_edit">
+    <label for="breed_id_to_edit">ID rasy</label>
+    <input name="breed_id_to_edit" id="breed_id_to_edit" required>
     </br>
     <input type="submit" value="Aktualizuj">
 </form>

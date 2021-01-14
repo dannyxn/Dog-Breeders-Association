@@ -7,33 +7,33 @@
 
 {% block content %}
 <h3>Dodaj hodowlę</h3>
-<form method="post">
-    <label for="kennel_name">Nazwa hodowli</label>
-    <input name="kennel_name" id="kennel_name" required>
-    <label for="breeder_id">ID hodowcy</label>
-    <input name="breeder_id" id="breeder_id" required>
-    <label for="region_id">ID regionu</label>
-    <input name="region_id" id="region_id" required>
+<form method="post" action="{{ url_for('editor.kennels_add') }}" name="form_to_add">
+    <label for="kennel_name_to_add">Nazwa hodowli</label>
+    <input name="kennel_name_to_add" id="kennel_name_to_add" required>
+    <label for="breeder_id_to_add">ID hodowcy</label>
+    <input name="breeder_id_to_add" id="breeder_id_to_add" required>
+    <label for="region_id_to_add">ID regionu</label>
+    <input name="region_id_to_add" id="region_id_to_add" required>
     <input type="submit" value="Dodaj">
 </form>
 
 <h3>Usuń hodowlę</h3>
-<form method="post">
-    <label for="kennel_id">ID hodowli</label>
-    <input name="kennel_id" id="kennel_id" required>
+<form method="post" action="{{ url_for('editor.kennels_delete') }}" name="form_to_delete">
+    <label for="kennel_id_to_delete">ID hodowli</label>
+    <input name="kennel_id_to_delete" id="kennel_id_to_delete" required>
     <input type="submit" value="Usuń">
 </form>
 
 <h3>Edytuj hodowlę</h3>
-<form method="post">
-    <label for="kennel_id">ID hodowli</label>
-    <input name="kennel_id" id="kennel_id" required>
-    <label for="kennel_name">Nazwa hodowli</label>
-    <input name="kennel_name" id="kennel_name" required>
-    <label for="breeder_id">ID hodowcy</label>
-    <input name="breeder_id" id="breeder_id" required>
-    <label for="region_id">ID regionu</label>
-    <input name="region_id" id="region_id" required>
+<form method="post" action="{{ url_for('editor.kennels_edit') }}" name="form_to_edit">
+    <label for="kennel_id_to_edit">ID hodowli</label>
+    <input name="kennel_id_to_edit" id="kennel_id_to_edit" required>
+    <label for="kennel_name_to_edit">Nazwa hodowli</label>
+    <input name="kennel_name_to_edit" id="kennel_name_to_edit" required>
+    <label for="breeder_id_to_edit">ID hodowcy</label>
+    <input name="breeder_id_to_edit" id="breeder_id_to_edit" required>
+    <label for="region_id_to_edit">ID regionu</label>
+    <input name="region_id_to_edit" id="region_id_to_edit" required>
     <input type="submit" value="Aktualizuj">
 </form>
 {% endblock %}

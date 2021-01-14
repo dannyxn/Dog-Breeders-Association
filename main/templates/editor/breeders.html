@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Edycja hodowlii{% endblock %}</h1>
+<h3><a href="{{ url_for('browser.kennels') }}">Przegląd hodowlii</a></h3>
+{% endblock %}
+
+{% block content %}
+<h3>Dodaj hodowcę</h3>
+<form method="post" action="{{ url_for('editor.breeders_add') }}" name="form_to_add">
+    <label for="breeder_name_to_add">Imię hodowcy</label>
+    <input name="breeder_name_to_add" id="breeder_name_to_add" required>
+    <label for="breeder_surname_to_add">Nazwisko hodowcy</label>
+    <input name="breeder_surname_to_add" id="breeder_surname_to_add" required>
+    <label for="breeder_email_to_add">Adres e-mail hodowcy</label>
+    <input name="breeder_email_to_add" id="breeder_email_to_add" required>
+    <label for="breeder_phone_number_to_add">Numer telefonu hodowcy</label>
+    <input name="breeder_phone_number_to_add" id="breeder_phone_number_to_add" required>
+    <input type="submit" value="Dodaj">
+</form>
+
+<h3>Usuń hodowcę</h3>
+<form method="post" action="{{ url_for('editor.breeders_delete') }}" name="form_to_delete">
+    <label for="breeder_id_to_delete">ID hodowcy</label>
+    <input name="breeder_id_to_delete" id="breeder_id_to_delete" required>
+    <input type="submit" value="Usuń">
+</form>
+
+<h3>Edytuj hodowcę</h3>
+<form method="post" action="{{ url_for('editor.breeders_edit') }}" name="form_to_edit">
+    <label for="breeder_id_to_edit">ID hodowcy</label>
+    <input name="breeder_id_to_edit" id="breeder_id_to_edit" required>
+    <label for="breeder_name_to_edit">Imię hodowcy</label>
+    <input name="breeder_name_to_edit" id="breeder_name_to_edit" required>
+    <label for="breeder_surname_to_edit">Nazwisko hodowcy</label>
+    <input name="breeder_surname_to_edit" id="breeder_surname_to_edit" required>
+    <label for="breeder_email_to_edit">Adres e-mail hodowcy</label>
+    <input name="breeder_email_to_edit" id="breeder_email_to_edit" required>
+    <label for="breeder_phone_number_to_edit">Numer telefonu hodowcy</label>
+    <input name="breeder_phone_number_to_edit" id="breeder_phone_number_to_edit" required>
+    <input type="submit" value="Aktualizuj">
+</form>
+{% endblock %}

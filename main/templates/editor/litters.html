@@ -7,33 +7,33 @@
 
 {% block content %}
 <h3>Dodaj miot</h3>
-<form method="post">
-    <label for="father_id">ID ojca</label>
-    <input name="father_id" id="father_id" required>
-    <label for="mother_id">ID matki</label>
-    <input name="mother_id" id="mother_id" required>
-    <label for="alias">Alias</label>
-    <input max-length="1" name="alias" id="alias" required>
+<form method="post" action="{{ url_for('editor.litters_add') }}" id="add_litter_form">
+    <label for="father_id_to_add">ID ojca</label>
+    <input name="father_id_to_add" id="father_id_to_add" required>
+    <label for="mother_id_to_add">ID matki</label>
+    <input name="mother_id_to_add" id="mother_id_to_add" required>
+    <label for="alias_to_add">Alias</label>
+    <input max-length="1" name="alias_to_add" id="alias_to_add" required>
     <input type="submit" value="Dodaj">
 </form>
 
 <h3>Usuń miot</h3>
-<form method="post">
-    <label for="litter_id">ID miotu</label>
-    <input name="litter_id" id="litter_id" required>
+<form method="post" action="{{ url_for('editor.litters_delete') }}" id="delete_litter_form">
+    <label for="litter_id_to_delete">ID miotu</label>
+    <input name="litter_id_to_delete" id="litter_id_to_delete" required>
     <input type="submit" value="Usuń">
 </form>
 
 <h3>Edytuj miot</h3>
-<form method="post">
-    <label for="litter_id">ID miotu</label>
-    <input name="litter_id" id="litter_id" required>
-    <label for="father_id">ID ojca</label>
-    <input name="father_id" id="father_id" required>
-    <label for="mother_id">ID matki</label>
-    <input name="mother_id" id="mother_id" required>
-    <label for="alias">Alias</label>
-    <input max-length="1" name="alias" id="alias" required>
+<form method="post" action="{{ url_for('editor.litters_edit') }}" id="edit_litter_form">
+    <label for="litter_id_to_edit">ID miotu</label>
+    <input name="litter_id_to_edit" id="litter_id_to_edit" required>
+    <label for="father_id_to_edit">ID ojca</label>
+    <input name="father_id_to_edit" id="father_id_to_edit" required>
+    <label for="mother_id_to_edit">ID matki</label>
+    <input name="mother_id_to_edit" id="mother_id_to_edit" required>
+    <label for="alias_to_edit">Alias</label>
+    <input max-length="1" name="alias_to_edit" id="alias_to_edit" required>
     <input type="submit" value="Aktualizuj">
 </form>
 {% endblock %}
