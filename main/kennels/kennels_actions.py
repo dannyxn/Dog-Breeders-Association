@@ -33,3 +33,34 @@ def handle_edit(request, cursor, conn):
         conn.commit()
         return redirect(url_for('browser.kennels'))
 
+def handle_search(request, cursor):
+    if request.method == 'GET':
+        breeder_id = request.args.get('breeder_id')
+        kennel_name = request.args.get('kennel_name')
+        region_id = request.args.get('region_id')
+        query = SEARCH_KENNELS
+        any_condition_present = False
+        built_query = ""
+        if breeder_id:
+            built_query += " id_wlasciciel = {}".format(breeder_id)
+            any_condition_present = True
+
+        if kennel_name:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " nazwa = '{}' ".format(kennel_name)
+            any_condition_present = True
+
+        if region_id:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " id_region = {} ".format(region_id)
+            any_condition_present = True
+
+        if built_query == "":
+            cursor.execute(ALL_DOGS)
+        else:
+            cursor.execute(query + built_query)
+
+        results = cursor.fetchall()
+        return render_template('browser/kennels_list.html', kennels=results)

@@ -9,7 +9,7 @@
   <div class="content-area">
     <div class="search-area">
       <h4>Szukaj według</h4>
-      <form method="post">
+      <form method="get"  action="{{ url_for('browser.regions_search') }}" id="search_form">
         <label for="region_name">Nazwa regionu</label>
         <input name="region_name" id="region_name">
         <input type="submit" value="Wyszukaj">

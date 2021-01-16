@@ -9,6 +9,10 @@ from .regions.sql import ALL_REGIONS
 from .breeders import breeders_actions
 from .breeds import breeds_actions
 from .dogs import dogs_actions
+from .regions import regions_actions
+from .litters import litters_actions
+from .kennels import kennels_actions
+from .exams import exams_actions
 
 from flask import (
     Blueprint, render_template, request
@@ -31,13 +35,17 @@ cursor.execute("SET SEARCH_PATH TO zwiazek")
 @bp.route('/breeders')
 def breeders():
     cursor.execute(ALL_BREEDERS)
-    breeders = cursor.fetchall()
+    all_breeders = cursor.fetchall()
 
-    return render_template('browser/breeders.html', breeders=breeders)
+    return render_template('browser/breeders.html', breeders=all_breeders)
 
 @bp.route('/breeders/search')
 def breeders_search():
     return breeders_actions.handle_search(request, cursor)
+
+@bp.route('/breeders/details/<int:id>')
+def breeder_details(id):
+    return breeders_actions.details(cursor, id)
 
 
 @bp.route('/kennels')
@@ -45,6 +53,10 @@ def kennels():
     cursor.execute(ALL_KENNELS)
     kennels = cursor.fetchall()
     return render_template('browser/kennels_list.html', kennels=kennels)
+
+@bp.route('/kennels/search')
+def kennels_search():
+    return kennels_actions.handle_search(request, cursor)
 
 
 @bp.route('/dogs')
@@ -65,6 +77,10 @@ def regions():
 
     return render_template('browser/regions.html', regions=regions)
 
+@bp.route('/regions/search')
+def regions_search():
+    return regions_actions.handle_search(request, cursor)
+
 
 @bp.route('/breeds')
 def breeds():
@@ -84,6 +100,11 @@ def litters():
 
     return render_template('browser/litters.html', litters=litters)
 
+
+@bp.route('/litters/search')
+def litters_search():
+    return litters_actions.handle_search(request, cursor)
+
 @bp.route('/exams')
 def exams():
     cursor.execute(ALL_EXAMS)
@@ -91,8 +112,19 @@ def exams():
 
     return render_template('browser/exams.html', exams=exams)
 
+@bp.route('/exams/search')
+def exams_search():
+    return exams_actions.handle_search(request, cursor)
+
 @bp.route('/employees')
 def employees():
+    cursor.execute(ALL_EMPLOYEES)
+    employees = cursor.fetchall()
+
+    return render_template('browser/employees.html', employees=employees)
+
+@bp.route('/employees/search')
+def employees_search():
     cursor.execute(ALL_EMPLOYEES)
     employees = cursor.fetchall()
 

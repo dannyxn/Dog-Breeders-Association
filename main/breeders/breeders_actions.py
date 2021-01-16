@@ -61,3 +61,29 @@ def handle_search(request, cursor):
 
         results = cursor.fetchall()
         return render_template('browser/breeders.html', breeders=results)
+
+def extract_if_any(cursor, is_numeric):
+    ret = cursor.fetchall()
+    if ret:
+        return ret[0][0]
+    else:
+        return 0
+
+def details(cursor, id):
+    stats = []
+    cursor.execute(SEARCH_BREEDER + ' id = ' + str(id))
+    personal_data = cursor.fetchall()[0]
+
+    cursor.execute(BREEDER_KENNELS_COUNT.format(id))
+    stats.append(extract_if_any(cursor, True))
+
+    cursor.execute(BREEDER_DOGS_COUNT.format(id))
+    stats.append(extract_if_any(cursor, True))
+
+    cursor.execute(BREEDER_BREEDS_COUNT.format(id))
+    stats.append(extract_if_any(cursor, True))
+
+    cursor.execute(BREEDER_REGIONS_COUNT.format(id))
+    stats.append(extract_if_any(cursor, True))
+
+    return render_template('browser/breeder_details.html', personal_data=personal_data, stats=stats)

@@ -34,3 +34,49 @@ def handle_edit(request, cursor, conn):
                                        region_id_to_add, examiner_id_to_add), exam_date_to_add)
         conn.commit()
         return redirect(url_for('browser.exams'))
+
+def handle_search(request, cursor):
+    if request.method == 'GET':
+        exam_id = request.args.get('exam_id')
+        exam_name = request.args.get('exam_name')
+        region_id = request.args.get('region_id')
+        examiner_id = request.args.get('examiner_id')
+        exam_date_start = request.args.get('exam_date_start')
+        exam_date_end = request.args.get('exam_date_end')
+
+        query = SEARCH_EXAMS
+        built_query = ""
+        any_condition_present = False
+        if exam_id:
+            built_query += " id = {}".format(exam_id)
+            any_condition_present = True
+        if exam_name:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " nazwa = '{}'".format(exam_name)
+            any_condition_present = True
+
+        if region_id:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " id_region = {}".format(region_id)
+            any_condition_present = True
+
+        if examiner_id:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " id_egzaminator = {}".format(examiner_id)
+            any_condition_present = True
+
+        if exam_date_start and exam_date_end:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " data_zaliczenia between '{}' AND '{}'".format(exam_date_start, exam_date_end)
+
+        if built_query == "":
+            cursor.execute(ALL_EXAMS)
+        else:
+            cursor.execute(query + built_query)
+
+        results = cursor.fetchall()
+        return render_template('browser/exams.html', exams=results)

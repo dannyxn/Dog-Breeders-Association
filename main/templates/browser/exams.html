@@ -10,15 +10,19 @@
   <div class="content-area">
     <div class="search-area">
       <h4>Szukaj według</h4>
-      <form method="post">
-        <label for="exam_id">ID Egzaminu</label>
+      <form method="get"  action="{{ url_for('browser.exams_search') }}" id="search_form">
+        <label for="exam_id">Numer identyfikacyjny egzaminu</label>
         <input name="exam_id" id="exam_id">
         <label for="exam_name">Nazwa egzaminu</label>
         <input name="exam_name" id="exam_name">
-        <label for="region_id">ID regionu</label>
+        <label for="region_id">Numer identyfikacyjny regionu</label>
         <input name="region_id" id="region_id">
-        <label for="region_id">ID egzaminatora</label>
+        <label for="region_id">Numer identyfikacyjny egzaminatora</label>
         <input name="examiner_id" id="examiner_id">
+        <label for="exam_date_start">Data zaliczenia [OD]</label>
+        <input type="date" id="exam_date_start" name="exam_date_start">
+        <label for="exam_date_end">Data zaliczenia [DO]</label>
+        <input type="date" id="exam_date_end" name="exam_date_end">
         <input type="submit" value="Wyszukaj">
     </form>
     </div>
@@ -29,6 +33,7 @@
             <th>Nazwa egzaminu</th>
             <th>ID regionu</th>
             <th>ID egzaminatora</th>
+            <th>Data zaliczenia</th>
         </tr>
         {% for exam in exams %}
             <tr>
@@ -36,6 +41,7 @@
             <td>{{ exam[1] }}</td>
             <td>{{ exam[3] }}</td>
             <td>{{ exam[4] }}</td>
+            <td>{{ exam[5] }}</td>
             </tr>
         {% endfor %}
     </table>

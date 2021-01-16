@@ -30,7 +30,7 @@
       </tr>
       {% for breeder in breeders %}
       <tr>
-          <td>{{ breeder[0] }}</td>
+          <td><a href="{{ url_for('browser.breeder_details', id=breeder[0]) }}">{{ breeder[0] }}</a></td>
           <td>{{ breeder[1] }}</td>
           <td>{{ breeder[2] }}</td>
           <td>{{ breeder[3] }}</td>

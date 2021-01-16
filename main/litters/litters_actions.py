@@ -29,3 +29,35 @@ def handle_edit(request, cursor, conn):
                                             alias_to_edit))
         conn.commit()
         return redirect(url_for('browser.litters'))
+
+def handle_search(request, cursor):
+    if request.method == 'GET':
+        litter_id = request.args.get('litter_id')
+        father_id = request.args.get('father_id')
+        mother_id = request.args.get('mother_id')
+        query = SEARCH_LITTERS
+        built_query = ""
+        any_condition_present = False
+
+        if litter_id:
+            built_query += " id = {}".format(litter_id)
+            any_condition_present = True
+        if father_id:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " id_ojciec = {}".format(father_id)
+            any_condition_present = True
+
+        if mother_id:
+            if any_condition_present:
+                built_query += " AND "
+            built_query += " id_matka = {}".format(mother_id)
+            any_condition_present = True
+
+        if built_query == "":
+            cursor.execute(ALL_LITTERS)
+        else:
+            cursor.execute(query + built_query)
+
+        results = cursor.fetchall()
+        return render_template('browser/litters.html', litters=results)

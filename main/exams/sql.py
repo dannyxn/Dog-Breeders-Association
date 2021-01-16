@@ -9,3 +9,5 @@ UPDATE_EXAM = "UPDATE Hodowca SET nazwa = '{1}', opis = '{2}'," \
               " id_region = {3}, id_egzaminator = {4}, data_zaliczenia = '{5}' WHERE id = {0}"
 
 GET_LATEST_ID = "SELECT * FROM Egzamin_ostatni_indeks"
+
+SEARCH_EXAMS = "SELECT * FROM Egzamin WHERE"

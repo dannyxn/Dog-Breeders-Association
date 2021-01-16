@@ -9,12 +9,12 @@
   <div class="content-area">
     <div class="search-area">
       <h4>Szukaj według</h4>
-      <form method="post">
-        <label for="litter_id">ID Miotu</label>
+      <form method="get"  action="{{ url_for('browser.litters_search') }}" id="search_form">
+        <label for="litter_id">Numer identyfikacyjny miotu</label>
         <input name="litter_id" id="litter_id">
-        <label for="father_id">ID Ojca</label>
+        <label for="father_id">Numer identyfikacyjny ojca</label>
         <input name="father_id" id="father_id">
-        <label for="mother_id">ID Matki</label>
+        <label for="mother_id">Numer identyfikacyjny matki</label>
         <input name="mother_id" id="mother_id">
         <input type="submit" value="Wyszukaj">
     </form>

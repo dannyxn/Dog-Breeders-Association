@@ -8,9 +8,9 @@
   <div class="content-area">
     <div class="search-area">
       <h4>Szukaj według</h4>
-      <form method="post">
-        <label for="employee_id">ID</label>
-        <input name="employee_id" id="employee_id">
+      <form method="get"  action="{{ url_for('browser.employees_search') }}" id="search_form">
+        <label for="employee_name">ID</label>
+        <input name="employee_name" id="employee_name">
         <label for="employee_surname">Nazwisko</label>
         <input name="employee_surname" id="employee_surname">
         <input type="submit" value="Wyszukaj">
