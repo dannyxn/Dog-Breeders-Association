@@ -8,3 +8,4 @@ UPDATE_BREED = "UPDATE Rasa SET nazwa = '{1}', typ = '{2}', proba_pracy = {3}  W
 GET_LATEST_ID = "SELECT * FROM Rasa_ostatni_indeks"
 
 SEARCH_BREED  = "SELECT * FROM Rasa WHERE"
+POSSIBLE_TO_DELETE_BREED = "SELECT mozna_usunac_rase({})"

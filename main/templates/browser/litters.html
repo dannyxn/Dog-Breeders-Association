@@ -25,14 +25,16 @@
             <th>ID</th>
             <th>ID Ojca</th>
             <th>ID Matki</th>
+            <th>ID Hodowlii</th>
             <th>Alias</th>
       </tr>
       {% for litter in litters %}
       <tr>
         <td>{{ litter[0] }}</td>
-        <td>{{ litter[1] }}</td>
-        <td>{{ litter[2] }}</td>
+        <td><a href="{{ url_for('browser.dog_details', id=litter[1]) }}">{{ litter[1] }}</a></td>
+        <td><a href="{{ url_for('browser.dog_details', id=litter[2]) }}">{{ litter[2] }}</a></td>
         <td>{{ litter[3] }}</td>
+        <td>{{ litter[4] }}</td>
       </tr>
       {% endfor %}
     </table>

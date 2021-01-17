@@ -21,6 +21,14 @@ conn = psycopg2.connect(host=host, port=port, dbname=dbname, user=user, password
 cursor = conn.cursor()
 cursor.execute("SET SEARCH_PATH TO zwiazek")
 
+@bp.before_request
+def before_request():
+    if 'user_id' in session and 'user' in session:
+        g.user = session['user']
+        g.user_id = session['user_id']
+    else:
+        return redirect(url_for('auth.login'))
+
 @bp.route('/breeders')
 def breeders():
     return render_template('editor/breeders.html')
@@ -69,6 +77,10 @@ def dogs_delete():
 def dogs_edit():
     return dogs_actions.handle_edit(request, cursor, conn)
 
+@bp.route('/dogs/<int:id>/add_exam', methods=['POST'])
+def dogs_add_passed_exam(id):
+    return dogs_actions.handle_add_passed_exam(request, cursor, conn, id)
+
 @bp.route('/regions', methods=['GET'])
 def regions():
     return render_template('editor/regions.html')
@@ -100,7 +112,6 @@ def breeds_delete():
 @bp.route('/breeds/edit', methods=['POST'])
 def breeds_edit():
     return breeds_actions.handle_edit(request, cursor, conn)
-
 
 @bp.route('/litters')
 def litters():

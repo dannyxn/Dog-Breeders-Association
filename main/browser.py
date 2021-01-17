@@ -15,7 +15,7 @@ from .kennels import kennels_actions
 from .exams import exams_actions
 
 from flask import (
-    Blueprint, render_template, request
+    Blueprint, render_template, request, session, g
 )
 
 ALL_EMPLOYEES = "SELECT * FROM Pracownik ORDER BY id"
@@ -32,6 +32,14 @@ conn = psycopg2.connect(host=host, port=port, dbname=dbname, user=user, password
 cursor = conn.cursor()
 cursor.execute("SET SEARCH_PATH TO zwiazek")
 
+@bp.before_request
+def before_request():
+    if 'user_id' in session and 'user' in session:
+        g.user = session['user']
+        g.user_id = session['user_id']
+    else:
+        return redirect(url_for('auth.login'))
+
 @bp.route('/breeders')
 def breeders():
     cursor.execute(ALL_BREEDERS)
@@ -39,14 +47,14 @@ def breeders():
 
     return render_template('browser/breeders.html', breeders=all_breeders)
 
+
 @bp.route('/breeders/search')
 def breeders_search():
-    return breeders_actions.handle_search(request, cursor)
+    return breeders_actions.handle_search(request, cursor, conn)
 
 @bp.route('/breeders/details/<int:id>')
 def breeder_details(id):
-    return breeders_actions.details(cursor, id)
-
+    return breeders_actions.details(cursor, id, conn)
 
 @bp.route('/kennels')
 def kennels():
@@ -56,7 +64,7 @@ def kennels():
 
 @bp.route('/kennels/search')
 def kennels_search():
-    return kennels_actions.handle_search(request, cursor)
+    return kennels_actions.handle_search(request, cursor, conn)
 
 
 @bp.route('/dogs')
@@ -68,7 +76,11 @@ def dogs():
 
 @bp.route('/dogs/search')
 def dogs_search():
-    return dogs_actions.handle_search(request, cursor)
+    return dogs_actions.handle_search(request, cursor, conn)
+
+@bp.route('/dogs/details/<int:id>')
+def dog_details(id):
+    return dogs_actions.details(request, cursor, id, conn)
 
 @bp.route('/regions')
 def regions():

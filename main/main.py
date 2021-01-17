@@ -4,6 +4,13 @@ from flask import (
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
+@bp.before_request
+def before_request():
+    if 'user_id' in session and 'user' in session:
+        g.user = session['user']
+        g.user_id = session['user_id']
+    else:
+        return redirect(url_for('auth.login'))
 
 @bp.route('/')
 def index():

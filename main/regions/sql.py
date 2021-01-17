@@ -7,3 +7,5 @@ UPDATE_REGION = "UPDATE Region SET nazwa = '{}' WHERE id = {}"
 GET_LATEST_ID = "SELECT * FROM Region_ostatni_indeks"
 
 SEARCH_REGIONS = "SELECT * FROM Region WHERE"
+
+POSSIBLE_TO_DELETE_REGION = "SELECT mozna_usunac_region({})"
