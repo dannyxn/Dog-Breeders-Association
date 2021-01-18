@@ -8,7 +8,7 @@ def extract_if_any(cursor, is_numeric):
         return 0
 
 def handle_postgres_error(err, cursor, conn, redirect_url):
-    flash(str(err))
+    flash(err.pgerror)
     conn.commit()
     cursor.execute("SET SEARCH_PATH TO zwiazek")
     return redirect(url_for(redirect_url))

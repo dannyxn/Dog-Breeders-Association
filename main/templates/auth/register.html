@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post">
+  <form method="post" action="{{ url_for('auth.register') }}">
     <label for="name">Imię</label>
     <input name="name" id="name" required>
     <label for="surname">Nazwisko</label>

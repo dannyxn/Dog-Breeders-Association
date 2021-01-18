@@ -10,10 +10,14 @@ def handle_add(request, cursor, conn):
             dog_name_to_add = request.form.get('dog_name_to_add')
             breeder_id_to_add = request.form.get('breeder_id_to_add')
             litter_id_to_add = request.form.get('litter_id_to_add')
+            birth_date_to_add = request.form.get('birth_date_to_add')
+            sex_to_add = request.form.get('sex_to_add')
+
             if litter_id_to_add == '':
                 litter_id_to_add = 'null'
             breed_id_to_add = request.form.get('breed_id_to_add')
-            cursor.execute(ADD_DOG.format(new_id, breeder_id_to_add, litter_id_to_add, breed_id_to_add, dog_name_to_add))
+            cursor.execute(ADD_DOG.format(new_id, breeder_id_to_add, litter_id_to_add, breed_id_to_add, dog_name_to_add,
+                                          birth_date_to_add, sex_to_add))
             conn.commit()
             return redirect(url_for('browser.dogs'))
         except Exception as err:
@@ -42,11 +46,14 @@ def handle_edit(request, cursor, conn):
             dog_name_to_edit = request.form.get('dog_name_to_edit')
             breeder_id_to_edit = request.form.get('breeder_id_to_edit')
             litter_id_to_edit = request.form.get('litter_id_to_edit')
+            birth_date_to_edit = request.form.get('birth_date_to_edit')
+            sex_to_edit = request.form.get('sex_to_edit')
+
             if litter_id_to_edit == '':
                 litter_id_to_edit = 'null'
             breed_id_to_edit = request.form.get('breed_id_to_edit')
             cursor.execute(UPDATE_DOG.format(dog_id_to_edit, dog_name_to_edit, breeder_id_to_edit,
-                                             litter_id_to_edit, breed_id_to_edit))
+                                             litter_id_to_edit, breed_id_to_edit, birth_date_to_edit, sex_to_edit))
             conn.commit()
             return redirect(url_for('browser.dogs'))
         except Exception as err:

@@ -1,12 +1,12 @@
 import os
+import psycopg2
 
-from flask import Flask
-from . import auth
-from . import main
-from . import browser
-from . import editor
-
-
+from flask import Flask, g
+from .auth import bp as auth_bp
+from .main import bp as main_bp
+from .browser import bp as browser_bp
+from .editor import bp as editor_bp
+from .database_config import *
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -18,11 +18,14 @@ def create_app():
     app.config.update(
         SECRET_KEY = "SECRET_KEY"
     )
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(main.bp)
-    app.register_blueprint(browser.bp)
-    app.register_blueprint(editor.bp)
+    with app.app_context():
+        g.db_conn = psycopg2.connect(host=host, port=port, dbname=dbname, user=user, password=pw)
 
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(main_bp)
+    app.register_blueprint(browser_bp)
+    app.register_blueprint(editor_bp)
+    app.app_context().push()
     return app
 
 

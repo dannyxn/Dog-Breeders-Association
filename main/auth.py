@@ -1,20 +1,16 @@
 import functools
 import psycopg2
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
 )
 from .utils import handle_postgres_error, extract_if_any
+from .db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-host = "127.0.0.1"
-port = "5432"
-dbname = "postgres"
-user = "postgres"
-pw = "postgres"
-conn = psycopg2.connect(host=host, port=port, dbname=dbname, user=user, password=pw)
-cursor = conn.cursor()
-cursor.execute("SET SEARCH_PATH TO zwiazek")
 
+@bp.before_request
+def before_request():
+    get_db()
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -25,14 +21,15 @@ def register():
             password = request.form['password']
             email = request.form['email']
             phone_number = request.form['phone_number']
-            cursor.execute("SELECT * FROM Pracownik_ostatni_indeks")
-            new_id = cursor.fetchall()[0][0] + 1
-            cursor.execute("INSERT INTO Pracownik(id, imie, nazwisko, email, haslo, numer_telefonu) values"
+            g.cursor.execute("SELECT * FROM Pracownik_ostatni_indeks")
+            new_id = g.cursor.fetchall()[0][0] + 1
+            g.cursor.execute("INSERT INTO Pracownik(id, imie, nazwisko, email, haslo, numer_telefonu) values"
                            f"({new_id}, '{name}', '{surname}', '{email}', '{password}', '{phone_number}')")
-            conn.commit()
-            redirect(url_for('auth.login'))
+            g.conn.commit()
+            flash("Rejestracja zakończona sukcesem!")
+            return redirect(url_for('auth.login'))
         except Exception as err:
-            return handle_postgres_error(err, cursor, conn, 'auth.register')
+            return handle_postgres_error(err, g.cursor, g.conn, 'auth.register')
 
 
     return render_template('auth/register.html')
@@ -45,8 +42,8 @@ def login():
             session.pop('user_id', None)
             email = request.form.get('email')
             password = request.form.get('password')
-            cursor.execute(f"SELECT id, imie, nazwisko FROM Pracownik WHERE email='{email}' AND haslo='{password}'")
-            results = cursor.fetchall()
+            g.cursor.execute(f"SELECT id, imie, nazwisko FROM Pracownik WHERE email='{email}' AND haslo='{password}'")
+            results = g.cursor.fetchall()
             if not results:
                 flash('Błędne hasło lub adres e-mail.')
                 return redirect(url_for('auth.login'))
@@ -61,7 +58,7 @@ def login():
 
             return redirect(url_for('main.index'))
         except Exception as err:
-            handle_postgres_error(err, cursor, conn, 'auth.login')
+            handle_postgres_error(err, g.cursor, g.conn, 'auth.login')
 
 
     return render_template('auth/login.html')
