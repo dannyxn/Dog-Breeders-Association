@@ -7,3 +7,5 @@ UPDATE_KENNEL = "UPDATE Hodowla SET id_wlasiciel = {1}, id_region = {2}, nazwa =
 GET_LATEST_ID = "SELECT * FROM Hodowla_ostatni_indeks"
 
 SEARCH_KENNELS = "SELECT * FROM Hodowla WHERE"
+
+POSSIBLE_TO_DELETE_KENNEL = "SELECT mozna_usunac_hodowle({});"

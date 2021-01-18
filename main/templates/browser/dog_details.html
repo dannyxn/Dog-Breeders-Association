@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}#{{ dog_data[0] }} - {{ dog_data[4] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="w3-responsive">
+    <h4>Dane psa</h4>
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+          <th>ID</th>
+          <th>Imię</th>
+          <th>ID właściciela</th>
+          <th>ID miotu</th>
+          <th>ID rasy</th>
+      </tr>
+      <tr>
+          <td>{{ dog_data[0] }}</td>
+          <td>{{ dog_data[4] }}</td>
+          <td>{{ dog_data[1] }}</td>
+          {% if dog_data[2] %}
+            <td>dog_data[2]</td>
+            {% else %}
+            <td>Nie zarejestrowano</td>
+            {% endif %}
+          <td>{{ dog_data[3] }}</td>
+      </tr>
+    </table>
+    <h4>Zdane egzaminy</h4>
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+          <th>ID egzaminu</th>
+          <th>Nazwa egzaminu</th>
+          <th>Nazwa regionu</th>
+          <th>Imię i nazwisko egzaminatora</th>
+          <th>Data zaliczenia</th>
+      </tr>
+      {% for exam in dogs_exams %}
+        <tr>
+            <td>{{ exam[0] }}</td>
+            <td>{{ exam[1] }}</td>
+            <td>{{ exam[4] }}</td>
+            <td>{{ exam[3] }}</td>
+            <td>{{ exam[2] }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <h4>Dodaj zdany egzamin</h4>
+    <form method="post"  action="{{ url_for('editor.dogs_add_passed_exam', id=dog_data[0]) }}" id="add_passed_exam">
+        <label for="exam_id">Numer identyfikacyjny egzaminu</label>
+        <input name="exam_id" id="exam_id" required>
+        <input type="submit" value="Dodaj">
+    </form>
+    </div>
+  </div>
+
+{% endblock %}

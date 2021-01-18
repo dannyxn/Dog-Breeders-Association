@@ -13,3 +13,4 @@ BREEDER_KENNELS_COUNT = "SELECT COUNT FROM ilosc_hodowlii_wlasciciela WHERE id_w
 BREEDER_DOGS_COUNT = "SELECT COUNT FROM ilosc_psow_wlasciciela WHERE id_wlasciciel = {}"
 BREEDER_BREEDS_COUNT = "SELECT COUNT(DISTINCT id_rasa) FROM Pies WHERE id_wlasciciel = {}"
 BREEDER_REGIONS_COUNT = "SELECT COUNT(DISTINCT id_region) FROM Hodowla WHERE id_wlasciciel = {}"
+POSSIBLE_TO_DELETE_BREEDER = "SELECT mozna_usunac_hodowce({})"

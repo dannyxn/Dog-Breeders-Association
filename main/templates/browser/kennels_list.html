@@ -32,7 +32,7 @@
       <tr>
         <td>{{ kennel[0] }}</td>
         <td>{{ kennel[3] }}</td>
-        <td>{{ kennel[1] }}</td>
+        <td><a href="{{ url_for('browser.breeder_details', id=kennel[1]) }}">{{ kennel[1] }}</a></td>
         <td>{{ kennel[2] }}</td>
       </tr>
       {% endfor %}

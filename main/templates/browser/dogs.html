@@ -33,11 +33,11 @@
       </tr>
       {% for dog in dogs %}
       <tr>
-        <td>{{ dog[0] }}</td>
+        <td><a href="{{ url_for('browser.dog_details', id=dog[0]) }}">{{ dog[0] }}</a></td>
         <td>{{ dog[4] }}</td>
-        <td>{{ dog[1] }}</td>
+        <td><a href="{{ url_for('browser.breeder_details', id=dog[1]) }}">{{ dog[1] }}</a></td>
         {% if dog[2] %}
-        <td>dog[2]</td>
+        <td>{{ dog[2] }}</td>
         {% else %}
         <td>Nie zarejestrowano</td>
         {% endif %}
