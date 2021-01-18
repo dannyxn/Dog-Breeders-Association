@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}#{{ personal_data[0] }} - {{ personal_data[1] }} {{ personal_data[2] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="w3-responsive">
+    <h4>Dane kontaktowe</h4>
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+          <th>ID</th>
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>Adres e-mail</th>
+          <th>Numer telefonu</th>
+      </tr>
+      <tr>
+          <td>{{ personal_data[0] }}</td>
+          <td>{{ personal_data[1] }}</td>
+          <td>{{ personal_data[2] }}</td>
+          <td>{{ personal_data[3] }}</td>
+          <td>{{ personal_data[4] }}</td>
+      </tr>
+
+    </table>
+    </br>
+    </br>
+    <h4>Statystyki</h4>
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+          <th>Liczba hodowlii</th>
+          <th>Liczba psów</th>
+          <th>Liczba hodowanych ras</th>
+          <th>Liczba regionów działania</th>
+      <tr>
+          <td>{{ stats[0] }}</td>
+          <td>{{ stats[1] }}</td>
+          <td>{{ stats[2] }}</td>
+          <td>{{ stats[3] }}</td>
+      </tr>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

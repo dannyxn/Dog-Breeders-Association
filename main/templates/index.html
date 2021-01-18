@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Centrum dowodzenia{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h3>Przeglądanie danych</h3>
+<ul class="w3-ul w3-hoverable">
+  <li><a href="{{ url_for('browser.breeders') }}">Lista hodowców</a></li>
+  <li><a href="{{ url_for('browser.employees') }}">Lista pracowników związku</a></li>
+  <li><a href="{{ url_for('browser.kennels') }}">Lista hodowli</a></li>
+  <li><a href="{{ url_for('browser.dogs') }}">Lista psów reproduktorów</a></li>
+  <li><a href="{{ url_for('browser.exams') }}">Lista egzaminów</a></li>
+  <li><a href="{{ url_for('browser.litters') }}">Lista miotów</a></li>
+  <li><a href="{{ url_for('browser.breeds') }}">Lista ras</a>
+  <li><a href="{{ url_for('browser.regions') }}">Lista regionów</a>
+</ul>
+<h3>Edycja danych</h3>
+<ul class="w3-ul w3-hoverable">
+  <li><a href="{{ url_for('editor.breeders') }}">Edytuj listę hodowców</a></li>
+  <li><a href="{{ url_for('editor.kennels') }}">Edytuj listę hodowlii</a></li>
+  <li><a href="{{ url_for('editor.dogs') }}">Edytuj listę psów reproduktorów</a></li>
+  <li><a href="{{ url_for('editor.exams') }}">Edytuj listę egzaminów</a></li>
+  <li><a href="{{ url_for('editor.litters') }}">Edytuj listę miotów</a></li>
+  <li><a href="{{ url_for('editor.breeds') }}">Edytuj listę ras</a>
+  <li><a href="{{ url_for('editor.regions') }}">Edytuj listę regionów</a>
+</ul>
+{% endblock %}

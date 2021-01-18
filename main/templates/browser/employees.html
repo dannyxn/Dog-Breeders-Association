@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Pracownicy związku{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="content-area">
+    <div class="search-area">
+      <h4>Szukaj według</h4>
+      <form method="get"  action="{{ url_for('browser.employees_search') }}" id="search_form">
+        <label for="employee_name">ID</label>
+        <input name="employee_name" id="employee_name">
+        <label for="employee_surname">Nazwisko</label>
+        <input name="employee_surname" id="employee_surname">
+        <input type="submit" value="Wyszukaj">
+    </form>
+    </div>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+        <tr>
+            <th>ID</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Adres e-mail</th>
+            <th>Numer telefonu</th>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+            <td>{{ employee[0] }}</td>
+            <td>{{ employee[1] }}</td>
+            <td>{{ employee[2] }}</td>
+            <td>{{ employee[3] }}</td>
+            <td>{{ employee[5] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

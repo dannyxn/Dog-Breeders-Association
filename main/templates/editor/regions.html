@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Edycja regionów{% endblock %}</h1>
+    <h3><a href="{{ url_for('browser.regions') }}">Przegląd regionów</a></h3>
+{% endblock %}
+
+{% block content %}
+<h3>Dodaj region</h3>
+<form method="post" action="{{ url_for('editor.regions_add') }}" id="add_region_form">
+    <label for="region_name_to_add">Nazwa regionu</label>
+    <input name="region_name_to_add" id="region_name_to_add" required>
+    <input type="submit" value="Dodaj">
+</form>
+
+<h3>Usuń region</h3>
+<form method="post" action="{{ url_for('editor.regions_delete') }}" id="delete_region_form">
+    <label for="region_id_to_delete">ID regionu</label>
+    <input name="region_id_to_delete" id="region_id_to_delete" required>
+    <input type="submit" value="Usuń">
+</form>
+
+<h3>Edytuj region</h3>
+<form method="post" action="{{ url_for('editor.regions_edit') }}" id="edit_region_form">
+    <label for="region_id_to_edit">ID regionu</label>
+    <input name="region_id_to_edit" id="region_id_to_edit" required>
+    <label for="region_name_to_set">Nazwa regionu</label>
+    <input name="region_name_to_set" id="region_name_to_set" required>
+    <input type="submit" value="Aktualizuj">
+</form>
+{% endblock %}

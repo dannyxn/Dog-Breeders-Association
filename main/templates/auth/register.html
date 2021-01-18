@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Zarejestruj się{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" action="{{ url_for('auth.register') }}">
+    <label for="name">Imię</label>
+    <input name="name" id="name" required>
+    <label for="surname">Nazwisko</label>
+    <input name="surname" id="surname" required>
+    <label for="email">Adres e-mail</label>
+    <input name="email" id="email" required>
+    <label for="phone_number">Numer telefonu</label>
+    <input name="phone_number" id="phone_number" required>
+    <label for="password">Hasło</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Zarejestruj się">
+  </form>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Rasy psów uznawane przez związek{% endblock %}</h1>
+<h3><a href="{{ url_for('editor.breeds') }}">Edycja listy ras</a></h3>
+
+{% endblock %}
+
+{% block content %}
+  <div class="content-area">
+    <div class="search-area">
+      <h4>Szukaj według</h4>
+      <form method="get"  action="{{ url_for('browser.breeds_search') }}" id="search_form">
+        <label for="breed_name">Nazwa</label>
+        <input name="breed_name" id="breed_name">
+        <label for="type">Typ</label>
+        <input name="type" id="type">
+        <label for="work_trail_yes">Czy podlega próbom pracy?</label>
+        <input id='work_trail_yes' type='checkbox' value='Yes' name='work_trail_yes'>
+        <input id='work_trail_no' type='hidden' value='No' name='work_trail_no'>
+        <input type="submit" value="Wyszukaj">
+    </form>
+    </div>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+        <th>ID</th>
+        <th>Nazwa</th>
+        <th>Typ</th>
+        <th>Próba pracy</th>
+      </tr>
+      {% for breed in breeds %}
+      <tr>
+        <td>{{ breed[0] }}</td>
+        <td>{{ breed[1] }}</td>
+        <td>{{ breed[2] }}</td>
+        {% if breed[3] %}
+        <td>TAK</td>
+        {% else %}
+        <td>NIE</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+    </div>
+  </div>
+
+{% endblock %}
