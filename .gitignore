@@ -1,0 +1,5 @@
+/venv
+/.idea
+/sql
+flask_run.bat
+README.md
