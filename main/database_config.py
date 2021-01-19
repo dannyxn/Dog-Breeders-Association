@@ -1,5 +1,5 @@
 host = "rogue.db.elephantsql.com"
 port = "5432"
-dbname = "vdfcglsb"
-user = "vdfcglsb"
-pw = "NXpyvX06BQHptw9ZBclB9ObSziY0plUC"
+dbname = "dbname"
+user = "username"
+pw = "password"
