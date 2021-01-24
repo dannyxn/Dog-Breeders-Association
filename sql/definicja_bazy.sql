@@ -1,16 +1,16 @@
-CREATE SCHEMA zwiazek;
-SET SEARCH_PATH TO zwiazek;
+SET SEARCH_PATH TO public;
 
-CREATE EXTENSION citext;
-CREATE DOMAIN email AS citext
-  CHECK ( value ~ '^[a-zA-Z0-9.!#$%&''*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$' );
+CREATE EXTENSION IF NOT EXISTS citext;
+CREATE DOMAIN email_domena AS citext
+   CHECK ( value ~ '^[a-zA-Z0-9.!#$%&''*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$' );
+
 
 CREATE TABLE Hodowca
 (
 id int NOT NULL,
 imie varchar(64) NOT NULL,
 nazwisko varchar(64) NOT NULL,
-email varchar(64) NOT NULL,
+email email_domena NOT NULL,
 numer_telefonu varchar(64),
 UNIQUE(email, numer_telefonu)
 
@@ -80,7 +80,7 @@ CREATE TABLE Pracownik
 id int NOT NULL,
 imie varchar(64) NOT NULL,
 nazwisko varchar(64) NOT NULL,
-email varchar(64) NOT NULL,
+email email_domena NOT NULL,
 haslo varchar(64) NOT NULL,
 numer_telefonu varchar(64),
 unique(email, numer_telefonu)
@@ -107,21 +107,6 @@ ALTER TABLE Pies_egzamin ADD FOREIGN KEY (id_egzamin) REFERENCES Egzamin (id) ON
 ALTER TABLE Miot ADD FOREIGN KEY (id_ojciec) REFERENCES Pies (id);
 ALTER TABLE Miot ADD FOREIGN KEY (id_matka) REFERENCES Pies (id);
 ALTER TABLE Miot ADD FOREIGN KEY (id_hodowla) REFERENCES Hodowla (id);
-
-CREATE VIEW Hodowca_ostatni_indeks AS SELECT MAX(id) FROM Hodowca;
-CREATE VIEW Hodowla_ostatni_indeks AS SELECT MAX(id) FROM Hodowla;
-CREATE VIEW Miot_ostatni_indeks AS SELECT MAX(id) FROM Miot;
-CREATE VIEW Pies_ostatni_indeks AS SELECT MAX(id) FROM Pies;
-CREATE VIEW Region_ostatni_indeks AS SELECT MAX(id) FROM Region;
-CREATE VIEW Rasa_ostatni_indeks AS SELECT MAX(id) FROM Rasa;
-CREATE VIEW Pracownik_ostatni_indeks AS SELECT MAX(id) FROM Pracownik;
-CREATE VIEW Egzamin_ostatni_indeks AS SELECT MAX(id) FROM Egzamin;
-
-CREATE VIEW ilosc_hodowlii_wlasciciela AS
-	SELECT COUNT(*), id_wlasciciel FROM hodowla GROUP BY id_wlasciciel;
-
-CREATE VIEW ilosc_psow_wlasciciela AS SELECT COUNT(*),
-	id_wlasciciel FROM Pies GROUP BY id_wlasciciel;
-
+	
 
 

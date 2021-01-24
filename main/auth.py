@@ -1,16 +1,16 @@
-import functools
-import psycopg2
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-from .utils import handle_postgres_error, extract_if_any
+from .utils import handle_postgres_error
 from .db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+
 @bp.before_request
 def before_request():
     get_db()
+
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -31,7 +31,6 @@ def register():
         except Exception as err:
             return handle_postgres_error(err, g.cursor, g.conn, 'auth.register')
 
-
     return render_template('auth/register.html')
 
 
@@ -40,6 +39,7 @@ def login():
     if request.method == 'POST':
         try:
             session.pop('user_id', None)
+            session.pop('user', None)
             email = request.form.get('email')
             password = request.form.get('password')
             g.cursor.execute(f"SELECT id, imie, nazwisko FROM Pracownik WHERE email='{email}' AND haslo='{password}'")
@@ -60,11 +60,12 @@ def login():
         except Exception as err:
             handle_postgres_error(err, g.cursor, g.conn, 'auth.login')
 
-
     return render_template('auth/login.html')
 
 
 @bp.route('/logout')
 def logout():
     session.clear()
+    session.pop('user_id', None)
+    session.pop('user', None)
     return redirect(url_for('auth.login'))

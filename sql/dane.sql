@@ -20,11 +20,11 @@ values
 insert into Hodowca
 (id, imie, nazwisko, email, numer_telefonu)
 values
-(1, 'Albert', 'Abacki', 'abacki@gmail.com', '123456789'),
-(2, 'Bartek', 'Babacki', 'babacki@gmail.com', '123456789'),
-(3, 'Cezar', 'Cabacki', 'cabacki@gmail.com',  '123456789'),
-(4, 'Daniel', 'Dabacki', 'dadacki@gmail.com', '123456789'),
-(5, 'Dawid', 'Chara', 'dchara@gmail.com', '123456789');
+(1, 'Albert', 'Abacki', 'abacki@gmail.com', '+48123456789'),
+(2, 'Bartek', 'Babacki', 'babacki@gmail.com', '+48123456789'),
+(3, 'Cezar', 'Cabacki', 'cabacki@gmail.com',  '+48123456789'),
+(4, 'Daniel', 'Dabacki', 'dadacki@gmail.com', '+48123456789'),
+(5, 'Dawid', 'Chara', 'dchara@gmail.com', '+48123456789');
 
 
 insert into Hodowla
@@ -48,8 +48,8 @@ values
 insert into Pracownik
 (id, imie, nazwisko, email, haslo, numer_telefonu)
 values
-(1, 'Adrian', 'Wąski', 'waski@gmail.com', 'password', '123456789'),
-(2, 'Bartosz', 'Szeroki', 'szeroki@gmail.com', 'password', '123456789');
+(1, 'Adrian', 'Wąski', 'waski@gmail.com', 'password', '+48123456789'),
+(2, 'Bartosz', 'Szeroki', 'szeroki@gmail.com', 'password', '+48123456789');
 
 insert into Pies
 (id, id_wlasciciel, id_miot, id_rasa, imie, data_urodzenia, plec)
@@ -73,9 +73,8 @@ values
 insert into Egzamin
 (id, nazwa, opis, id_region, id_egzaminator, data_zaliczenia)
 values
-(1, 'Obrona junior', 'Podstawowe szkolenie obronne dla psów do 12 miesiąca',
+(1, 'Obrona junior', 'Podstawowe szkolenie obronne dla psów do 12 miesiąca', 
 15, 1, '06-01-2021');
-
 
 insert into Pies_egzamin(id_pies, id_egzamin)
 values
