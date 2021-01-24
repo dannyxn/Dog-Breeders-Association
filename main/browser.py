@@ -15,7 +15,7 @@ from .kennels import kennels_actions
 from .exams import exams_actions
 from .db import get_db
 from flask import (
-    Blueprint, render_template, request, session, g, redirect, url_for, current_app
+    Blueprint, render_template, request, session, g, redirect, url_for
 )
 
 ALL_EMPLOYEES = "SELECT * FROM Pracownik ORDER BY id"
@@ -33,6 +33,7 @@ def before_request():
     else:
         return redirect(url_for('auth.login'))
 
+
 @bp.route('/breeders')
 def breeders():
     g.cursor.execute(ALL_BREEDERS)
@@ -45,15 +46,18 @@ def breeders():
 def breeders_search():
     return breeders_actions.handle_search(request, g.cursor, g.conn)
 
+
 @bp.route('/breeders/details/<int:id>')
 def breeder_details(id):
     return breeders_actions.details(g.cursor, id, g.conn)
+
 
 @bp.route('/kennels')
 def kennels():
     g.cursor.execute(ALL_KENNELS)
     kennels = g.cursor.fetchall()
     return render_template('browser/kennels_list.html', kennels=kennels)
+
 
 @bp.route('/kennels/search')
 def kennels_search():
@@ -71,9 +75,11 @@ def dogs():
 def dogs_search():
     return dogs_actions.handle_search(request, g.cursor, g.conn)
 
+
 @bp.route('/dogs/details/<int:id>')
 def dog_details(id):
     return dogs_actions.details(request, g.cursor, id, g.conn)
+
 
 @bp.route('/regions')
 def regions():
@@ -82,9 +88,10 @@ def regions():
 
     return render_template('browser/regions.html', regions=regions)
 
+
 @bp.route('/regions/search')
 def regions_search():
-    return regions_actions.handle_search(request, g.cursor)
+    return regions_actions.handle_search(request, g.cursor, g.conn)
 
 
 @bp.route('/breeds')
@@ -94,9 +101,11 @@ def breeds():
 
     return render_template('browser/breeds.html', breeds=breeds)
 
+
 @bp.route('/breeds/search')
 def breeds_search():
-    return breeds_actions.handle_search(request, g.cursor)
+    return breeds_actions.handle_search(request, g.cursor, g.conn)
+
 
 @bp.route('/litters')
 def litters():
@@ -108,7 +117,8 @@ def litters():
 
 @bp.route('/litters/search')
 def litters_search():
-    return litters_actions.handle_search(request, g.cursor)
+    return litters_actions.handle_search(request, g.cursor, g.conn)
+
 
 @bp.route('/exams')
 def exams():
@@ -117,9 +127,11 @@ def exams():
 
     return render_template('browser/exams.html', exams=exams)
 
+
 @bp.route('/exams/search')
 def exams_search():
-    return exams_actions.handle_search(request, g.cursor)
+    return exams_actions.handle_search(request, g.cursor, g.conn)
+
 
 @bp.route('/employees')
 def employees():
@@ -127,6 +139,7 @@ def employees():
     employees = g.cursor.fetchall()
 
     return render_template('browser/employees.html', employees=employees)
+
 
 @bp.route('/employees/search')
 def employees_search():
